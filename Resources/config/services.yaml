@@ -1,0 +1,6 @@
+services:
+    olveneer.controller_test:
+        class: Olveneer\DataProcessorBundle\Tests\ControllerTest
+        tags: ['controller.argument_value_resolver']
+
+    Olveneer\DataProcessorBundle\Tests\ControllerTest: '@olveneer.controller_test'
