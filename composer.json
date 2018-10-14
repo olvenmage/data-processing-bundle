@@ -1,0 +1,27 @@
+{
+  "name": "olveneer/data-processing-bundle",
+  "type": "symfony-bundle",
+  "description": "A symfony bundle which makes data processing and setting up API end points a breeze.",
+  "keywords": ["olveneer", "data", "processing", "api", "form", "processor", "simple"],
+  "homepage": "https://github.com/olvenmage/data-processing-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Douwe Gnodde"
+    }
+  ],
+  "require": {
+    "php":                      ">=5.5.0",
+    "symfony/framework-bundle": "~2.7|~3.0|~4.0",
+    "symfony/validator": "^4.1",
+    "symfony/security": "^4.1",
+    "symfony/orm-pack": "^1.0",
+    "symfony/form": "^4.1",
+    "symfony/serializer": "^4.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Olveneer\\DataProcessorBundle\\": ""
+    }
+  }
+}
