@@ -4,3 +4,6 @@ services:
         tags: ['controller.argument_value_resolver']
 
     Olveneer\DataProcessorBundle\Tests\ControllerTest: '@olveneer.controller_test'
+
+    olveneer.api_point_handler:
+        class: Olveneer\DataProcessorBundle\Api\ApiPointHandler

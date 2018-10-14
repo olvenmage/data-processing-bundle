@@ -1,6 +1,6 @@
 <?php
 
-namespace Olveneer\TwigComponentsBundle;
+namespace Olveneer\DataProcessorBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;

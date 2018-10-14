@@ -1,6 +1,6 @@
 <?php
 
-namespace Olveneer\TwigComponentsBundle\DependencyInjection;
+namespace Olveneer\DataProcessorBundle\DependencyInjection;
 
 use Olveneer\TwigComponentsBundle\Component\TwigComponentInterface;
 use Olveneer\TwigComponentsBundle\Component\TwigComponentMixin;
@@ -31,9 +31,5 @@ class OlveneerDataProcessorExtension extends Extension
         $configuration = new Configuration();
 
         $config = $this->processConfiguration($configuration, $configs);
-
-        $configDefinition = $container->getDefinition('olveneer.config_store');
-        $configDefinition->replaceArgument(0, $config['components_directory']);
-
     }
 }
