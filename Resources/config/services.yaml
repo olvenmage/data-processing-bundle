@@ -1,9 +1,11 @@
 services:
-    olveneer.controller_test:
-        class: Olveneer\DataProcessorBundle\Tests\ControllerTest
-        tags: ['controller.argument_value_resolver']
+  olveneer.normalizer:
+    class: Olveneer\DataProcessorBundle\DataClass\Normalizer
+    arguments: ['@serializer.property_accessor']
 
-    Olveneer\DataProcessorBundle\Tests\ControllerTest: '@olveneer.controller_test'
+  olveneer.api_point_handler:
+    class: Olveneer\DataProcessorBundle\Api\ApiPointHandler
+    arguments: ['@olveneer.normalizer', '@doctrine.orm.entity_manager', '@validator', '@request_stack', '@translator']
 
-    olveneer.api_point_handler:
-        class: Olveneer\DataProcessorBundle\Api\ApiPointHandler
+  Olveneer\DataProcessorBundle\Api\ApiPointHandler:           '@olveneer.api_point_handler'
+  Olveneer\DataProcessorBundle\DataClass\Normalizer:          '@olveneer.normalizer'

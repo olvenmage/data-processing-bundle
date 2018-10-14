@@ -27,7 +27,7 @@ class ProcessorDataClassParameters
      * @param EntityManagerInterface $em
      * @param UserInterface $user
      */
-    public function __construct(EntityManagerInterface $em, UserInterface $user)
+    public function __construct(EntityManagerInterface $em, ?UserInterface $user)
     {
         $this->em = $em;
         $this->user = $user;

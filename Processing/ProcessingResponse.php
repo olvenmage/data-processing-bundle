@@ -87,6 +87,17 @@ class ProcessingResponse implements \JsonSerializable
     }
 
     /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'status' => $this->status,
+            'messages' => $this->messages
+        ];
+    }
+
+    /**
      * Specify data which should be serialized to JSON
      * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
      * @return mixed data which can be serialized by <b>json_encode</b>,
@@ -95,9 +106,6 @@ class ProcessingResponse implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return [
-            'status' => $this->status,
-            'messages' => $this->messages
-        ];
+        return $this->toArray();
     }
 }
