@@ -28,5 +28,5 @@ interface ProcessorInterface
      * @return mixed
      * Wordt aangeroepen voordat de dataclass door de processor heen gaat.
      */
-    public static function beforeProcess($object, ProcessorDataClassParameters $params);
+    public static function beforeProcess(&$object, ProcessorDataClassParameters $params);
 }

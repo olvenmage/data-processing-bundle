@@ -59,7 +59,7 @@ abstract class AbstractProcessor implements ProcessorInterface
 
         $params = new ProcessorParameters($data, $data->getParams()->getUser());
 
-        $this->beforeProcess($data, $data->getParams());
+        self::beforeProcess($data, $data->getParams());
 
         return $this->process($params);
     }
@@ -70,7 +70,7 @@ abstract class AbstractProcessor implements ProcessorInterface
      * @return mixed
      * Wordt aangeroepen voordat de dataclass door de processor heen gaat.
      */
-    public static function beforeProcess($object, ProcessorDataClassParameters $params)
+    public static function beforeProcess(&$object, ProcessorDataClassParameters $params)
     {
         return;
     }

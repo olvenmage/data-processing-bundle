@@ -18,7 +18,6 @@ use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Guard\AuthenticatorInterface;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -325,8 +324,8 @@ class ApiPointHandler
         });
 
         $resolver->setNormalizer('authenticator', function (Options $options, $authenticator) {
-            if ($authenticator && !$authenticator instanceof AuthenticatorInterface) {
-                throw new InvalidOptionsException('The processor must implement the ProcessorInterface');
+            if ($authenticator && !$authenticator instanceof ApiUserAuthenticatorInterface) {
+                throw new InvalidOptionsException('The processor must implement the ApiUserAuthenticatorInterface');
             }
 
             return $authenticator;

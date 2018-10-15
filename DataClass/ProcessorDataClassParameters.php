@@ -44,7 +44,7 @@ class ProcessorDataClassParameters
     /**
      * @return UserInterface
      */
-    public function getUser(): UserInterface
+    public function getUser(): ?UserInterface
     {
         return $this->user;
     }
