@@ -38,11 +38,10 @@ abstract class AbstractProcessor implements ProcessorInterface
 
     /**
      * @param FormInterface $form
-     * @param Request $request
      * @return ProcessingResponse
      * @throws InvalidDataClassException
      */
-    public function processForm(FormInterface $form, Request $request): ProcessingResponse
+    public function processForm(FormInterface $form): ProcessingResponse
     {
         /** @var AbstractProcessorDataClass $data */
         $data = $form->getData();
