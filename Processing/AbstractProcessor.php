@@ -44,14 +44,6 @@ abstract class AbstractProcessor implements ProcessorInterface
      */
     public function processForm(FormInterface $form, Request $request): ProcessingResponse
     {
-        $form->handleRequest($request);
-
-        if (!$form->isSubmitted() || !$form->isValid()) {
-            $errors = $form->getErrors(true);
-
-            return new ProcessingResponse(ProcessingResponse::STATUS_FORM_ERROR, ['errors' => $errors]);
-        }
-
         /** @var AbstractProcessorDataClass $data */
         $data = $form->getData();
 
