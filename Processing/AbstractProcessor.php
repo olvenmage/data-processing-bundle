@@ -72,7 +72,7 @@ abstract class AbstractProcessor implements ProcessorInterface
      * @param $params
      * @return ProcessorDataClassInterface
      */
-    public function createDataClass($dataClass, ProcessorDataClassParameters $params)
+    public function createDataClass($dataClass, ProcessorDataClassParameters $params): ProcessorDataClassInterface
     {
         return new $dataClass($params);
     }
