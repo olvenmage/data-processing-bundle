@@ -11,9 +11,4 @@ namespace Olveneer\DataProcessorBundle\DataClass;
  */
 interface ProcessorDataClassInterface
 {
-    /**
-     * ProcessorDataClassInterface constructor.
-     * @param ProcessorDataClassParameters $params
-     */
-    public function __construct(ProcessorDataClassParameters $params, ...$depencencies);
 }
