@@ -307,18 +307,23 @@ class ApiPointHandler
                 throw new InvalidOptionsException('The processor must implement the ProcessorInterface');
             }
 
-            $prc = $processor;
             return $processor;
         });
 
-        $resolver->setNormalizer('data_class', function (Options $options, $dataClass) use ($prc) {
+        $resolver->setNormalizer('data_class', function (Options $options, $dataClass) {
             if (!class_exists($dataClass)) {
                 throw new InvalidOptionsException('The data class has to be a valid class name');
             }
 
             $params = new ProcessorDataClassParameters($this->em, null);
 
-            $dataClassInstance = $prc->createDataClass($dataClass, $params);
+            $dataClassInstance = null;
+
+            try {
+                $processor = $options['processor'];
+                $dataClassInstance = $processor->createDataClass($dataClass, $params);
+            } catch (\Exception $e) {
+            }
 
             if (!$dataClassInstance instanceof ProcessorDataClassInterface) {
                 throw new InvalidOptionsException('The data class must implement the ProcessorDataClassInterface');
