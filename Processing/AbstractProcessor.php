@@ -3,6 +3,7 @@
 namespace Olveneer\DataProcessorBundle\Processing;
 
 use Olveneer\DataProcessorBundle\DataClass\AbstractProcessorDataClass;
+use Olveneer\DataProcessorBundle\DataClass\ProcessorDataClassInterface;
 use Olveneer\DataProcessorBundle\DataClass\ProcessorDataClassParameters;
 use Olveneer\DataProcessorBundle\Exception\InvalidDataClassException;
 use Olveneer\DataProcessorBundle\DataClass\AbstractDataClassValidator;
@@ -64,5 +65,15 @@ abstract class AbstractProcessor implements ProcessorInterface
     public static function beforeProcess(&$object, ProcessorDataClassParameters $params)
     {
         return;
+    }
+
+    /**
+     * @param $dataClass
+     * @param $params
+     * @return ProcessorDataClassInterface
+     */
+    public function createDataClass($dataClass, ProcessorDataClassParameters $params)
+    {
+        return new $dataClass($params);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Olveneer\DataProcessorBundle\Processing;
 
+use Olveneer\DataProcessorBundle\DataClass\ProcessorDataClassInterface;
 use Olveneer\DataProcessorBundle\DataClass\ProcessorDataClassParameters;
 
 /**
@@ -29,4 +30,6 @@ interface ProcessorInterface
      * Wordt aangeroepen voordat de dataclass door de processor heen gaat.
      */
     public static function beforeProcess(&$object, ProcessorDataClassParameters $params);
+
+    public function createDataClass($dataClass, ProcessorDataClassParameters $params): ProcessorDataClassInterface;
 }

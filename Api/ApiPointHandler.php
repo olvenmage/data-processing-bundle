@@ -195,7 +195,7 @@ class ApiPointHandler
 
         $params = new ProcessorDataClassParameters($this->em, $user);
 
-        $dataClass = new $dataClass($params);
+        $dataClass = $processor->createDataClass($dataClass, $params);
 
         if (!$dataClass instanceof ProcessorDataClassInterface) {
             throw new InvalidDataClassException('Data class must implement the APIDataClassInterface.');
