@@ -136,6 +136,7 @@ class ApiPointHandler
 
         $method = $request->getMethod();
 
+
         if ($method !== $options['method']) {
             return new JsonResponse([
                 'status' => self::STATUS_INVALID_METHOD,
@@ -299,22 +300,25 @@ class ApiPointHandler
         $resolver->addAllowedTypes('data_class', 'string');
         $resolver->addAllowedTypes('encoders', 'array');
 
+        /** @var ProcessorInterface $prc */
+        $prc = null;
         $resolver->setNormalizer('processor', function (Options $options, $processor) {
             if (!$processor instanceof ProcessorInterface) {
                 throw new InvalidOptionsException('The processor must implement the ProcessorInterface');
             }
 
+            $prc = $processor;
             return $processor;
         });
 
-        $resolver->setNormalizer('data_class', function (Options $options, $dataClass) {
+        $resolver->setNormalizer('data_class', function (Options $options, $dataClass) use ($prc) {
             if (!class_exists($dataClass)) {
                 throw new InvalidOptionsException('The data class has to be a valid class name');
             }
 
             $params = new ProcessorDataClassParameters($this->em, null);
 
-            $dataClassInstance = new $dataClass($params);
+            $dataClassInstance = $prc->createDataClass($dataClass, $params);
 
             if (!$dataClassInstance instanceof ProcessorDataClassInterface) {
                 throw new InvalidOptionsException('The data class must implement the ProcessorDataClassInterface');
