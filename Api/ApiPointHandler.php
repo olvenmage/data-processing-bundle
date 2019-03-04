@@ -317,13 +317,13 @@ class ApiPointHandler
 
             $params = new ProcessorDataClassParameters($this->em, null);
 
-            $dataClassInstance = null;
+            $processor = isset ($options['processor']) ? $options['processor'] : null;
 
-            try {
-                $processor = $options['processor'];
-                $dataClassInstance = $processor->createDataClass($dataClass, $params);
-            } catch (\Exception $e) {
+            if (!$processor instanceof ProcessorInterface) {
+                throw new InvalidOptionsException('The processor must implement the ProcessorInterface');
             }
+
+            $dataClassInstance = $processor->createDataClass($dataClass, $params);
 
             if (!$dataClassInstance instanceof ProcessorDataClassInterface) {
                 throw new InvalidOptionsException('The data class must implement the ProcessorDataClassInterface');
